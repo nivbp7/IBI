@@ -16,7 +16,6 @@ class ProductTableViewCell: UITableViewCell {
     let priceLabel = UILabel()
     let brandLabel = UILabel()
     let productImageView = UIImageView()
-    let favoriteButton = UIButton()
     
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -43,35 +42,30 @@ class ProductTableViewCell: UITableViewCell {
     
     // MARK: - Layout
     private func layoutViews() {
-        contentView.add(subviews: [titleLabel, descriptionLabel, priceLabel, brandLabel, productImageView, favoriteButton])
+        contentView.add(subviews: [titleLabel, descriptionLabel, priceLabel, brandLabel, productImageView])
         
         NSLayoutConstraint.activate([
             productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             productImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            productImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            productImageView.widthAnchor.constraint(equalTo: productImageView.heightAnchor),
+            productImageView.widthAnchor.constraint(equalToConstant: 100),
+            productImageView.heightAnchor.constraint(equalToConstant: 100),
             
             titleLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            titleLabel.topAnchor.constraint(equalTo: productImageView.topAnchor, constant: 8),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             
-            descriptionLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            
             priceLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
-            priceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
+            priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             
             brandLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
             brandLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
             brandLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             
-            favoriteButton.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
-            favoriteButton.topAnchor.constraint(equalTo: brandLabel.bottomAnchor, constant: 8),
-            favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            favoriteButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
-            
+            descriptionLabel.leadingAnchor.constraint(equalTo: productImageView.leadingAnchor, constant: 8),
+            descriptionLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 8),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
     }
     
