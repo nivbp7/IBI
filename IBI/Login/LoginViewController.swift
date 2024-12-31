@@ -7,6 +7,8 @@
 
 import UIKit
 import Lottie
+import LocalAuthentication
+
 
 final class LoginViewController: UIViewController {
     
@@ -46,6 +48,7 @@ final class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        authenticateUser()
     }
     
     // MARK: - Observers
@@ -191,6 +194,30 @@ final class LoginViewController: UIViewController {
         
         print("Login successful")
     }
+    
+    private func authenticateUser() {
+        let context = LAContext()
+        context.localizedCancelTitle = "Cancel"
+        context.localizedFallbackTitle = "Use Passcode"
+
+        let reason = "Authenticate to access your account"
+        var error: NSError?
+
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
+                DispatchQueue.main.async {
+                    if success {
+                        print("Authentication Successful!")
+                    } else {
+                        self.presentInformationAlertController(title: "Failed", message: authenticationError?.localizedDescription)
+                    }
+                }
+            }
+        } else {
+            self.presentInformationAlertController(title: "Error", message: "Your device does not support this feature")
+        }
+    }
+
     
     // MARK: - Actions
     @objc private func didTapActionButton() {
