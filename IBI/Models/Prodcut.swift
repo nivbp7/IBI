@@ -21,6 +21,6 @@ extension Product {
                                       description: "Product Description",
                                         price: 100.0,
                                         brand: "Product Brand",
-                                        thumbnail: "Product Thumbnail",
+                                        thumbnail: "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
                                         images: ["Image1", "Image2", "Image3"])
 }

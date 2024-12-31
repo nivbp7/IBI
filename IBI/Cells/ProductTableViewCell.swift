@@ -84,5 +84,8 @@ class ProductTableViewCell: UITableViewCell {
         descriptionLabel.textColor = .label
         priceLabel.textColor = .label
         brandLabel.textColor = .label
+        
+        titleLabel.numberOfLines = 0
+        descriptionLabel.numberOfLines = 0
     }
 }
