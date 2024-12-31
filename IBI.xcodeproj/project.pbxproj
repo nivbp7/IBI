@@ -20,6 +20,7 @@
 		E8594C5C2D24070F0076EBBD /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C5B2D24070F0076EBBD /* String+Utils.swift */; };
 		E8594C5E2D2407460076EBBD /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C5D2D2407460076EBBD /* UIViewController+Utils.swift */; };
 		E8594C612D243D0D0076EBBD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E8594C602D243D0D0076EBBD /* Lottie */; };
+		E8594C642D243D420076EBBD /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = E8594C632D243D410076EBBD /* login.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		E8594C592D2402560076EBBD /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		E8594C5B2D24070F0076EBBD /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		E8594C5D2D2407460076EBBD /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		E8594C632D243D410076EBBD /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		E8594C352D23F8E00076EBBD /* IBI */ = {
 			isa = PBXGroup;
 			children = (
+				E8594C622D243D2D0076EBBD /* Animations */,
 				E8594C582D24023E0076EBBD /* Extensions */,
 				E8594C552D24003F0076EBBD /* Settings */,
 				E8594C502D23FE520076EBBD /* Products */,
@@ -143,6 +146,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E8594C622D243D2D0076EBBD /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				E8594C632D243D410076EBBD /* login.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -210,6 +221,7 @@
 				E8594C432D23F8E50076EBBD /* LaunchScreen.storyboard in Resources */,
 				E8594C402D23F8E50076EBBD /* Assets.xcassets in Resources */,
 				E8594C3E2D23F8E00076EBBD /* Main.storyboard in Resources */,
+				E8594C642D243D420076EBBD /* login.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
