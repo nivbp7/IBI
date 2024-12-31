@@ -9,6 +9,8 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
     
+    private lazy var productsViewModel = newProductsViewModel()
+    
     // MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -47,7 +49,7 @@ final class MainTabBarController: UITabBarController {
     }
     
     private func setupChildViewControllers() {
-        let productsListViewController = ProductsListViewController()
+        let productsListViewController = ProductsListViewController(productsViewModel: productsViewModel)
         let settingsViewController = SettingsViewController()
         let favoritesViewController = FavoritesViewController()
         
@@ -80,6 +82,13 @@ final class MainTabBarController: UITabBarController {
         DispatchQueue.main.async {
             self.present(loginViewController, animated: false)
         }
+    }
+    
+    //MARK: - Factory
+    private func newProductsViewModel() -> ProductsViewModel {
+        let networkAccess = URLSessionNetworkAccess()
+        let productsViewModel = ProductsViewModel(networkAccess: networkAccess)
+        return productsViewModel
     }
 }
 

@@ -15,6 +15,7 @@ public enum NetworkError: Error {
     case networkError(text: String?)
     case responseError
     case invalidData
+    case invalidURL
 }
 
 public class URLSessionNetworkAccess: NetworkAccessing {
