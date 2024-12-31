@@ -49,8 +49,9 @@ final class MainTabBarController: UITabBarController {
     private func setupChildViewControllers() {
         let productsListViewController = ProductsListViewController()
         let settingsViewController = SettingsViewController()
+        let favoritesViewController = FavoritesViewController()
         
-        let tabBarViewControllers = [productsListViewController, settingsViewController]
+        let tabBarViewControllers = [productsListViewController, settingsViewController, favoritesViewController]
 
         for (i, tabBarItem) in TabBarItem.allCases.enumerated() {
             let item = createBarItem(for: tabBarItem.title)
@@ -96,11 +97,13 @@ extension MainTabBarController: LoginViewControllerDelegate {
 enum TabBarItem: CaseIterable {
     case products
     case settings
+    case favorites
     
     var title: String {
         switch self {
         case .products: return "Products"
         case .settings: return "Settings"
+        case .favorites: return "Favorites"
         }
     }
 }
