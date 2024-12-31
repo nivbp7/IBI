@@ -12,8 +12,11 @@ final class ProductsListViewController: UIViewController {
     
     private lazy var tableView = newTableView()
     
+    private let productsViewModel: ProductsViewModel
+    
     // MARK: - Initialization
-    init() {
+    init(productsViewModel: ProductsViewModel) {
+        self.productsViewModel = productsViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,6 +29,7 @@ final class ProductsListViewController: UIViewController {
         super.viewDidLoad()
         layout()
         setup()
+        configureProducts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +53,20 @@ final class ProductsListViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .systemBackground
     }
+
+    // MARK: - Configure
+    private func configureProducts() {
+        productsViewModel.fetchProducts { [weak self] error in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    self.presentInformationAlertController(title: "Error fetching products", message: error?.localizedDescription)
+                    return
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     // MARK: - Factory
     private func newTableView() -> UITableView {
@@ -62,20 +80,22 @@ final class ProductsListViewController: UIViewController {
         tableView.delegate = self
         
         return tableView
-        
     }
 }
 
 extension ProductsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return productsViewModel.products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuseID, for: indexPath) as? ProductTableViewCell else {
             preconditionFailure("could not dequeue ProductTableViewCell for \(indexPath) ")
         }
-        let product = Product.dummyProduct
+        guard indexPath.row < productsViewModel.products.count else {
+            preconditionFailure("product out of bounds for \(indexPath)")
+        }
+        let product = productsViewModel.products[indexPath.row]
         cell.titleLabel.text = product.title
         cell.descriptionLabel.text = product.description
         cell.priceLabel.text = "\(product.price)"
@@ -89,6 +109,3 @@ extension ProductsListViewController: UITableViewDataSource {
 extension ProductsListViewController: UITableViewDelegate {
     
 }
-
-    
-
