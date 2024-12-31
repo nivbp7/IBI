@@ -153,7 +153,7 @@ final class LoginViewController: UIViewController {
         actionButton.setTitle(buttonText, for: .normal)
         actionButton.setTitleColor(.white, for: .normal)
         actionButton.addTarget(self, action: #selector(didTapActionButton), for: .touchUpInside)
-        actionButton.backgroundColor = UIColor(red: 21/255, green: 25/255, blue: 73/255, alpha: 1.0)
+        actionButton.backgroundColor = UIColor(named: "AppColor")
         actionButton.layer.cornerRadius = 10
     }
 

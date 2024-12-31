@@ -39,7 +39,7 @@ final class MainTabBarController: UITabBarController {
         self.delegate = self
         
         tabBar.barTintColor = UIColor.orange
-        tabBar.tintColor = UIColor.purple
+        tabBar.tintColor = UIColor(named: "AppColor")
         tabBar.backgroundColor = .white
         view.backgroundColor = .clear
 
