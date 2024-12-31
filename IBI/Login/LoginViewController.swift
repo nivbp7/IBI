@@ -12,12 +12,19 @@ final class LoginViewController: UIViewController {
     private let username = "IBI"
     private let password = "password"
     
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    private let titleLabel = UILabel()
+    private let imageView = UIImageView()
     private let usernameTextField = UITextField()
     private let passwordTextField = UITextField()
+    private let actionButton = UIButton()
+    
     
     // MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
+        startObserving()
     }
     
     required init?(coder: NSCoder) {
@@ -39,40 +46,116 @@ final class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
+    // MARK: - Observers
+    func startObserving() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func stopObserving() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - View layout
     private func layout() {
+        layoutScrollView()
+        layoutTitle()
+        layoutImageView()
         layoutTextFields()
+        layoutButton()
+    }
+    
+    private func layoutScrollView() {
+        scrollView.snap(to: view, shouldAddToView: true)
+        contentView.snap(to: scrollView, shouldAddToView: true)
+    }
+    
+    private func layoutTitle() {
+        contentView.add(subviews: [titleLabel])
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            titleLabel.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
+    private func layoutImageView() {
+        contentView.add(subviews: [imageView])
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 100),
+            imageView.heightAnchor.constraint(equalToConstant: 100)
+        ])
     }
     
     private func layoutTextFields() {
-        view.add(subviews: [usernameTextField, passwordTextField])
+        contentView.add(subviews: [usernameTextField, passwordTextField])
         
         NSLayoutConstraint.activate([
-            usernameTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            usernameTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            usernameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            usernameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             usernameTextField.heightAnchor.constraint(equalToConstant: 44),
             
             passwordTextField.topAnchor.constraint(equalTo: usernameTextField.bottomAnchor, constant: 20),
-            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            passwordTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            passwordTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             passwordTextField.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
+    private func layoutButton() {
+        contentView.add(subviews: [actionButton])
+        
+        NSLayoutConstraint.activate([
+            actionButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            actionButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            actionButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            actionButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     
     // MARK: - Setup
     private func setup() {
         setupView()
+        setupTitle()
+        setupImageView()
         setupTextField()
+        setupButton()
     }
     
     private func setupView() {
         view.backgroundColor = .systemBackground
     }
     
+    private func setupTitle() {
+        titleLabel.text = "Login Screen"
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = .label
+    }
+    
+    private func setupImageView() {
+        
+    }
+    
+    private func setupButton() {
+        let buttonText = String(localized: "Login")
+        actionButton.setTitle(buttonText, for: .normal)
+        actionButton.setTitleColor(.white, for: .normal)
+        actionButton.addTarget(self, action: #selector(didTapActionButton), for: .touchUpInside)
+        actionButton.backgroundColor = UIColor(red: 21/255, green: 25/255, blue: 73/255, alpha: 1.0)
+        actionButton.layer.cornerRadius = 10
+    }
+
     private func setupTextField() {
-        usernameTextField.placeholder = "Username"
-        passwordTextField.placeholder = "Password"
+        let usernameText = String(localized: "Username")
+        let passwordText = String(localized: "Password")
+        usernameTextField.placeholder = usernameText
+        passwordTextField.placeholder = passwordText
         
         passwordTextField.textColor = .label
         usernameTextField.textColor = .label
@@ -109,6 +192,11 @@ final class LoginViewController: UIViewController {
         print("Login successful")
     }
     
+    // MARK: - Actions
+    @objc private func didTapActionButton() {
+        validateTextFieldInputs()
+    }
+    
     // MARK: - Helpers
     private func dismissKeyboard() {
         usernameTextField.resignFirstResponder()
@@ -127,5 +215,25 @@ extension LoginViewController: UITextFieldDelegate {
             return true
         }
         return true
+    }
+}
+
+extension LoginViewController {
+    @objc fileprivate func keyboardWillShow(_ notification: Notification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardRectValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardRect = keyboardRectValue.cgRectValue
+                
+                var contentInset = scrollView.contentInset
+                contentInset.bottom = keyboardRect.size.height
+                scrollView.contentInset = contentInset
+            }
+        }
+    }
+    
+    @objc fileprivate func keyboardWillHide(_ notification: Notification) {
+        var contentInset = scrollView.contentInset
+        contentInset.bottom = 0.0
+        scrollView.contentInset = contentInset
     }
 }
