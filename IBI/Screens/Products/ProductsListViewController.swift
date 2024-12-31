@@ -107,5 +107,13 @@ extension ProductsListViewController: UITableViewDataSource {
 }
 
 extension ProductsListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard indexPath.row < productsViewModel.products.count else {
+            preconditionFailure("product out of bounds for \(indexPath)")
+        }
+        let product = productsViewModel.products[indexPath.row]
+        let productDetailViewController = ProductsLDetailViewController(product: product)
+        navigationController?.pushViewController(productDetailViewController, animated: true)
+    }
 }
