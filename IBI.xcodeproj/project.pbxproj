@@ -25,6 +25,8 @@
 		E8594C6B2D244D810076EBBD /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C6A2D244D810076EBBD /* FavoritesViewController.swift */; };
 		E8594C6F2D244FE50076EBBD /* Prodcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C6E2D244FE50076EBBD /* Prodcut.swift */; };
 		E8594C722D2452900076EBBD /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C712D2452900076EBBD /* ProductTableViewCell.swift */; };
+		E8594C752D245B9B0076EBBD /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = E8594C742D245B9B0076EBBD /* SDWebImage */; };
+		E8594C772D245B9B0076EBBD /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E8594C762D245B9B0076EBBD /* SDWebImageMapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8594C752D245B9B0076EBBD /* SDWebImage in Frameworks */,
+				E8594C772D245B9B0076EBBD /* SDWebImageMapKit in Frameworks */,
 				E8594C612D243D0D0076EBBD /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,6 +236,8 @@
 			name = IBI;
 			packageProductDependencies = (
 				E8594C602D243D0D0076EBBD /* Lottie */,
+				E8594C742D245B9B0076EBBD /* SDWebImage */,
+				E8594C762D245B9B0076EBBD /* SDWebImageMapKit */,
 			);
 			productName = IBI;
 			productReference = E8594C332D23F8E00076EBBD /* IBI.app */;
@@ -263,6 +269,7 @@
 			mainGroup = E8594C2A2D23F8E00076EBBD;
 			packageReferences = (
 				E8594C5F2D243D0D0076EBBD /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				E8594C732D245B9B0076EBBD /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = E8594C342D23F8E00076EBBD /* Products */;
 			projectDirPath = "";
@@ -537,6 +544,14 @@
 				minimumVersion = 4.5.0;
 			};
 		};
+		E8594C732D245B9B0076EBBD /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.20.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -544,6 +559,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E8594C5F2D243D0D0076EBBD /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		E8594C742D245B9B0076EBBD /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8594C732D245B9B0076EBBD /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		E8594C762D245B9B0076EBBD /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8594C732D245B9B0076EBBD /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
