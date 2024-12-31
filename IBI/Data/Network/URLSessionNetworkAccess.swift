@@ -7,29 +7,29 @@
 
 import Foundation
 
-public protocol NetworkAccessing {
+protocol NetworkAccessing {
     func fetchData(for request: Request) async throws -> Data
 }
 
-public enum NetworkError: Error {
+enum NetworkError: Error {
     case networkError(text: String?)
     case responseError
     case invalidData
     case invalidURL
 }
 
-public class URLSessionNetworkAccess: NetworkAccessing {
+final class URLSessionNetworkAccess: NetworkAccessing {
     
     private let session: URLSession
     
-    public init(session: URLSession = URLSession.shared) {
+    init(session: URLSession = URLSession.shared) {
         self.session = session
     }
     
     /// Fetch the data from the network using async/await
     /// - Parameter request: A Request that includes the URL and HTTP Method
     /// - Returns: The Data object from this URL
-    public func fetchData(for request: Request) async throws -> Data {
+    func fetchData(for request: Request) async throws -> Data {
         do {
             let (data, response) = try await session.data(for: request.build())
             guard let

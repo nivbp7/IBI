@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Request {
+struct Request {
     private let url: URL
     private let method: Method
     
@@ -33,7 +33,7 @@ extension Request {
     }
 }
 
-public enum Method {
+enum Method {
     case get
 }
 
