@@ -23,7 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func createMainNavigationController() -> UINavigationController {
         let rootViewController = MainTabBarController()
         let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.setNavigationBarHidden(true, animated: false)
         return navigationController
     }
 
