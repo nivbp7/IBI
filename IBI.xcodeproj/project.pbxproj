@@ -27,6 +27,9 @@
 		E8594C722D2452900076EBBD /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C712D2452900076EBBD /* ProductTableViewCell.swift */; };
 		E8594C752D245B9B0076EBBD /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = E8594C742D245B9B0076EBBD /* SDWebImage */; };
 		E8594C772D245B9B0076EBBD /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E8594C762D245B9B0076EBBD /* SDWebImageMapKit */; };
+		E8594C7A2D245EF40076EBBD /* URLSessionNetworkAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C792D245EF40076EBBD /* URLSessionNetworkAccess.swift */; };
+		E8594C7C2D2465CC0076EBBD /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C7B2D2465CC0076EBBD /* Data+Utils.swift */; };
+		E8594C7E2D2466230076EBBD /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C7D2D2466230076EBBD /* RequestBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,9 @@
 		E8594C6A2D244D810076EBBD /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		E8594C6E2D244FE50076EBBD /* Prodcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prodcut.swift; sourceTree = "<group>"; };
 		E8594C712D2452900076EBBD /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		E8594C792D245EF40076EBBD /* URLSessionNetworkAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionNetworkAccess.swift; sourceTree = "<group>"; };
+		E8594C7B2D2465CC0076EBBD /* Data+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Utils.swift"; sourceTree = "<group>"; };
+		E8594C7D2D2466230076EBBD /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +160,7 @@
 				E8594C592D2402560076EBBD /* UIView+Utils.swift */,
 				E8594C5B2D24070F0076EBBD /* String+Utils.swift */,
 				E8594C5D2D2407460076EBBD /* UIViewController+Utils.swift */,
+				E8594C7B2D2465CC0076EBBD /* Data+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -169,6 +176,7 @@
 		E8594C652D244A510076EBBD /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E8594C782D245ED60076EBBD /* Network */,
 				E8594C662D244A6B0076EBBD /* Store */,
 			);
 			path = Data;
@@ -216,6 +224,15 @@
 				E8594C712D2452900076EBBD /* ProductTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		E8594C782D245ED60076EBBD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E8594C792D245EF40076EBBD /* URLSessionNetworkAccess.swift */,
+				E8594C7D2D2466230076EBBD /* RequestBuilder.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,7 +320,9 @@
 				E8594C6F2D244FE50076EBBD /* Prodcut.swift in Sources */,
 				E8594C572D2401220076EBBD /* LoginViewController.swift in Sources */,
 				E8594C5E2D2407460076EBBD /* UIViewController+Utils.swift in Sources */,
+				E8594C7C2D2465CC0076EBBD /* Data+Utils.swift in Sources */,
 				E8594C522D23FE760076EBBD /* ProductsListViewController.swift in Sources */,
+				E8594C7A2D245EF40076EBBD /* URLSessionNetworkAccess.swift in Sources */,
 				E8594C5A2D2402560076EBBD /* UIView+Utils.swift in Sources */,
 				E8594C372D23F8E00076EBBD /* AppDelegate.swift in Sources */,
 				E8594C722D2452900076EBBD /* ProductTableViewCell.swift in Sources */,
@@ -312,6 +331,7 @@
 				E8594C4F2D23FC7F0076EBBD /* MainTabBarController.swift in Sources */,
 				E8594C392D23F8E00076EBBD /* SceneDelegate.swift in Sources */,
 				E8594C542D2400350076EBBD /* SettingsViewController.swift in Sources */,
+				E8594C7E2D2466230076EBBD /* RequestBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
