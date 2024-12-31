@@ -9,7 +9,6 @@ import UIKit
 import Lottie
 import LocalAuthentication
 
-
 final class LoginViewController: UIViewController {
     
     private let username = "IBI"
@@ -23,7 +22,6 @@ final class LoginViewController: UIViewController {
     private let actionButton = UIButton()
     
     private lazy var imageView = newLottieAnimationView()
-
     
     // MARK: - Initialization
     init() {
@@ -124,7 +122,6 @@ final class LoginViewController: UIViewController {
         ])
     }
     
-    
     // MARK: - Setup
     private func setup() {
         setupView()
@@ -143,7 +140,6 @@ final class LoginViewController: UIViewController {
         titleLabel.textAlignment = .center
         titleLabel.textColor = .label
     }
-    
     
     private func setupButton() {
         let buttonText = String(localized: "Login")
@@ -218,7 +214,6 @@ final class LoginViewController: UIViewController {
         }
     }
 
-    
     // MARK: - Actions
     @objc private func didTapActionButton() {
         validateTextFieldInputs()
@@ -234,6 +229,7 @@ final class LoginViewController: UIViewController {
         passwordTextField.resignFirstResponder()
     }
     
+    // MARK: - Factory
     private func newLottieAnimationView() -> LottieAnimationView {
         let animationView = LottieAnimationView(name: "login")
         animationView.contentMode = .scaleAspectFit
@@ -243,6 +239,7 @@ final class LoginViewController: UIViewController {
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == usernameTextField {
@@ -257,6 +254,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - Keyboard notifications
 extension LoginViewController {
     @objc fileprivate func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo {
