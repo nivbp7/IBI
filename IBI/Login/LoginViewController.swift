@@ -9,6 +9,10 @@ import UIKit
 import Lottie
 import LocalAuthentication
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func loginViewControllerDidLogin(_ loginViewController: LoginViewController)
+}
+
 final class LoginViewController: UIViewController {
     
     private let username = "IBI"
@@ -23,8 +27,11 @@ final class LoginViewController: UIViewController {
     
     private lazy var imageView = newLottieAnimationView()
     
+   private weak var delegate: LoginViewControllerDelegate?
+    
     // MARK: - Initialization
-    init() {
+    init(delegate: LoginViewControllerDelegate?) {
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
         startObserving()
     }
@@ -188,7 +195,7 @@ final class LoginViewController: UIViewController {
             return
         }
         
-        print("Login successful")
+        delegate?.loginViewControllerDidLogin(self)
     }
     
     private func authenticateUser() {
@@ -203,7 +210,8 @@ final class LoginViewController: UIViewController {
             context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
                 DispatchQueue.main.async {
                     if success {
-                        print("Authentication Successful!")
+                        self.dismiss(animated: true)
+                        self.delegate?.loginViewControllerDidLogin(self)
                     } else {
                         self.presentInformationAlertController(title: "Failed", message: authenticationError?.localizedDescription)
                     }

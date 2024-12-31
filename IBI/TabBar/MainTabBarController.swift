@@ -26,15 +26,18 @@ final class MainTabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        performLoginFlow()
     }
     
     // MARK: - Setup
     private func setup() {
         self.delegate = self
+        
         tabBar.barTintColor = UIColor.orange
         tabBar.tintColor = UIColor.purple
         tabBar.backgroundColor = .white
@@ -60,10 +63,34 @@ final class MainTabBarController: UITabBarController {
     private func createBarItem(for title: String) -> UITabBarItem {
         return UITabBarItem(title: title, image: nil, selectedImage: nil)
     }
+    
+    
+    //MARK: - Login flow
+    private func performLoginFlow() {
+        if !UserDefaults.isLoggedIn {
+            showLoginViewController()
+        }
+    }
+    
+    
+    private func showLoginViewController() {
+        let loginViewController = LoginViewController(delegate: self)
+        loginViewController.modalPresentationStyle = .fullScreen
+        DispatchQueue.main.async {
+            self.present(loginViewController, animated: false)
+        }
+    }
 }
 
 extension MainTabBarController: UITabBarControllerDelegate {
     
+}
+
+extension MainTabBarController: LoginViewControllerDelegate {
+    func loginViewControllerDidLogin(_ loginViewController: LoginViewController) {
+        UserDefaults.isLoggedIn = true
+        self.dismiss(animated: true)
+    }
 }
 
 enum TabBarItem: CaseIterable {
