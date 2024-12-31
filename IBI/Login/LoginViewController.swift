@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 final class LoginViewController: UIViewController {
     
@@ -15,11 +16,12 @@ final class LoginViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let titleLabel = UILabel()
-    private let imageView = UIImageView()
     private let usernameTextField = UITextField()
     private let passwordTextField = UITextField()
     private let actionButton = UIButton()
     
+    private lazy var imageView = newLottieAnimationView()
+
     
     // MARK: - Initialization
     init() {
@@ -60,9 +62,9 @@ final class LoginViewController: UIViewController {
     private func layout() {
         layoutScrollView()
         layoutTitle()
-        layoutImageView()
         layoutTextFields()
         layoutButton()
+        layoutImageView()
     }
     
     private func layoutScrollView() {
@@ -78,17 +80,6 @@ final class LoginViewController: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             titleLabel.heightAnchor.constraint(equalToConstant: 44)
-        ])
-    }
-    
-    private func layoutImageView() {
-        contentView.add(subviews: [imageView])
-        
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 100),
-            imageView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     
@@ -119,11 +110,22 @@ final class LoginViewController: UIViewController {
         ])
     }
     
+    private func layoutImageView() {
+        contentView.add(subviews: [imageView])
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            imageView.bottomAnchor.constraint(equalTo: usernameTextField.topAnchor, constant: -20),
+            imageView.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1),
+        ])
+    }
+    
+    
     // MARK: - Setup
     private func setup() {
         setupView()
         setupTitle()
-        setupImageView()
         setupTextField()
         setupButton()
     }
@@ -138,9 +140,6 @@ final class LoginViewController: UIViewController {
         titleLabel.textColor = .label
     }
     
-    private func setupImageView() {
-        
-    }
     
     private func setupButton() {
         let buttonText = String(localized: "Login")
@@ -201,6 +200,14 @@ final class LoginViewController: UIViewController {
     private func dismissKeyboard() {
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+    }
+    
+    private func newLottieAnimationView() -> LottieAnimationView {
+        let animationView = LottieAnimationView(name: "login")
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.play()
+        return animationView
     }
 }
 
