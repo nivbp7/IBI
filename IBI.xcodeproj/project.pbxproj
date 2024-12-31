@@ -76,14 +76,11 @@
 		E8594C352D23F8E00076EBBD /* IBI */ = {
 			isa = PBXGroup;
 			children = (
-				E8594C692D244D650076EBBD /* Favorites */,
+				E8594C6D2D244FBB0076EBBD /* Models */,
+				E8594C6C2D244F900076EBBD /* Screens */,
 				E8594C652D244A510076EBBD /* Data */,
 				E8594C622D243D2D0076EBBD /* Animations */,
 				E8594C582D24023E0076EBBD /* Extensions */,
-				E8594C552D24003F0076EBBD /* Settings */,
-				E8594C502D23FE520076EBBD /* Products */,
-				E8594C4D2D23FC650076EBBD /* TabBar */,
-				E8594C4B2D23FA7D0076EBBD /* Login */,
 				E8594C4C2D23FAA90076EBBD /* Storyboards */,
 				E8594C4A2D23FA6F0076EBBD /* Delegate */,
 				E8594C3F2D23F8E50076EBBD /* Assets.xcassets */,
@@ -182,6 +179,25 @@
 				E8594C6A2D244D810076EBBD /* FavoritesViewController.swift */,
 			);
 			path = Favorites;
+			sourceTree = "<group>";
+		};
+		E8594C6C2D244F900076EBBD /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E8594C4D2D23FC650076EBBD /* TabBar */,
+				E8594C4B2D23FA7D0076EBBD /* Login */,
+				E8594C502D23FE520076EBBD /* Products */,
+				E8594C552D24003F0076EBBD /* Settings */,
+				E8594C692D244D650076EBBD /* Favorites */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		E8594C6D2D244FBB0076EBBD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
