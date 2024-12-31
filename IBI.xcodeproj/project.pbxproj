@@ -21,6 +21,7 @@
 		E8594C5E2D2407460076EBBD /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C5D2D2407460076EBBD /* UIViewController+Utils.swift */; };
 		E8594C612D243D0D0076EBBD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E8594C602D243D0D0076EBBD /* Lottie */; };
 		E8594C642D243D420076EBBD /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = E8594C632D243D410076EBBD /* login.json */; };
+		E8594C682D244A800076EBBD /* UserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C672D244A800076EBBD /* UserDefaultsStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		E8594C5B2D24070F0076EBBD /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		E8594C5D2D2407460076EBBD /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		E8594C632D243D410076EBBD /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
+		E8594C672D244A800076EBBD /* UserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		E8594C352D23F8E00076EBBD /* IBI */ = {
 			isa = PBXGroup;
 			children = (
+				E8594C652D244A510076EBBD /* Data */,
 				E8594C622D243D2D0076EBBD /* Animations */,
 				E8594C582D24023E0076EBBD /* Extensions */,
 				E8594C552D24003F0076EBBD /* Settings */,
@@ -152,6 +155,22 @@
 				E8594C632D243D410076EBBD /* login.json */,
 			);
 			path = Animations;
+			sourceTree = "<group>";
+		};
+		E8594C652D244A510076EBBD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E8594C662D244A6B0076EBBD /* Store */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		E8594C662D244A6B0076EBBD /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				E8594C672D244A800076EBBD /* UserDefaultsStore.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +257,7 @@
 				E8594C522D23FE760076EBBD /* ProductsListViewController.swift in Sources */,
 				E8594C5A2D2402560076EBBD /* UIView+Utils.swift in Sources */,
 				E8594C372D23F8E00076EBBD /* AppDelegate.swift in Sources */,
+				E8594C682D244A800076EBBD /* UserDefaultsStore.swift in Sources */,
 				E8594C4F2D23FC7F0076EBBD /* MainTabBarController.swift in Sources */,
 				E8594C392D23F8E00076EBBD /* SceneDelegate.swift in Sources */,
 				E8594C542D2400350076EBBD /* SettingsViewController.swift in Sources */,
