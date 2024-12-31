@@ -132,6 +132,7 @@ final class LoginViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .systemBackground
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
     }
     
     private func setupTitle() {
@@ -194,6 +195,10 @@ final class LoginViewController: UIViewController {
     // MARK: - Actions
     @objc private func didTapActionButton() {
         validateTextFieldInputs()
+    }
+    
+    @objc private func didTapView() {
+        dismissKeyboard()
     }
     
     // MARK: - Helpers
