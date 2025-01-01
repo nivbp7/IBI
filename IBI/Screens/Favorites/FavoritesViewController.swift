@@ -8,8 +8,17 @@
 import UIKit
 
 final class FavoritesViewController: ProductsListViewController {
-    override func configureProducts() {
+    
+    // MARK: - Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configure()
+    }
+    
+    // MARK: - Configure
+    func configure() {
         productsViewModel.loadFavoriteProducts()
+        tableView.reloadData()
     }
 }
 
@@ -20,7 +29,7 @@ extension FavoritesViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuseID, for: indexPath) as? ProductTableViewCell else {
-            preconditionFailure("could not dequeue ProductTableViewCell for \(indexPath) ")
+            preconditionFailure("could not dequeue ProductTableViewCell for \(indexPath)")
         }
         let product = productsViewModel.product(at: indexPath, for: .favorites)
         cell.titleLabel.text = product.title

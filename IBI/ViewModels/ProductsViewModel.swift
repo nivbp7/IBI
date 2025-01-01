@@ -51,12 +51,12 @@ final class ProductsViewModel {
     }
     
     // MARK: - Public - products actions
-    func didFavoriteProduct(with id: Int) -> Bool {
+    func didFavoriteProduct(with id: Int) -> Bool? {
         if productStore.isFavorite(productID: id) {
             productStore.remove(productID: id)
             return false
         } else {
-            guard let product = products.first(where: { $0.id == id }) else {return false}
+            guard let product = products.first(where: { $0.id == id }) else {return nil}
             productStore.add(product: product)
             return true
         }

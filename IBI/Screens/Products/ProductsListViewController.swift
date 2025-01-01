@@ -12,7 +12,7 @@ class ProductsListViewController: UIViewController {
     
     let productsViewModel: ProductsViewModel
     
-    private lazy var tableView = newTableView()
+    lazy var tableView = newTableView()
     
     // MARK: - Initialization
     init(productsViewModel: ProductsViewModel) {
@@ -90,7 +90,7 @@ extension ProductsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuseID, for: indexPath) as? ProductTableViewCell else {
-            preconditionFailure("could not dequeue ProductTableViewCell for \(indexPath) ")
+            preconditionFailure("could not dequeue ProductTableViewCell for \(indexPath)")
         }
         let product = productsViewModel.product(at: indexPath, for: .all)
         cell.titleLabel.text = product.title

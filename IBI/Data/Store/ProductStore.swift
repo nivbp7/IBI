@@ -45,7 +45,6 @@ final class ProductStore: ProductStoring {
             let encoder = JSONEncoder()
             let data = try encoder.encode(products)
             defaults.set(data, forKey: ProductStore.productsKey)
-            print("Products saved successfully!")
         } catch {
             print("Failed to save products: \(error)")
         }
@@ -57,7 +56,6 @@ final class ProductStore: ProductStoring {
             do {
                 let decoder = JSONDecoder()
                 let products = try decoder.decode([Product].self, from: data)
-                print("Products loaded successfully!")
                 return products
             } catch {
                 print("Failed to load products: \(error)")

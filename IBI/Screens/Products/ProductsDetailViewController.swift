@@ -134,8 +134,7 @@ class ProductsDetailViewController: UIViewController {
     
     //MARK: - Actions
     @objc private func favoriteButtonTapped() {
-        let didFavorite = productsViewModel.didFavoriteProduct(with: product.id)
-        let image = favoriteButton.imageView?.image
+        guard let didFavorite = productsViewModel.didFavoriteProduct(with: product.id) else {return}
         if didFavorite {
             favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
