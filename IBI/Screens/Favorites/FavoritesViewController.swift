@@ -24,14 +24,14 @@ final class FavoritesViewController: ProductsListViewController {
 
 extension FavoritesViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return productsViewModel.numberOfRowsInSection(for: .favorites)
+        return productsViewModel.numberOfRowsInSection(for: productList)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuseID, for: indexPath) as? ProductTableViewCell else {
             preconditionFailure("could not dequeue ProductTableViewCell for \(indexPath)")
         }
-        let product = productsViewModel.product(at: indexPath, for: .favorites)
+        let product = productsViewModel.product(at: indexPath, for: productList)
         cell.titleLabel.text = product.title
         cell.descriptionLabel.text = product.description
         cell.priceLabel.text = "\(product.price)"

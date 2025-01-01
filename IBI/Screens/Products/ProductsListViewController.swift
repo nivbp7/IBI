@@ -11,12 +11,13 @@ import SDWebImage
 class ProductsListViewController: UIViewController {
     
     let productsViewModel: ProductsViewModel
-    
+    let productList: ProductList
     lazy var tableView = newTableView()
     
     // MARK: - Initialization
-    init(productsViewModel: ProductsViewModel) {
+    init(productsViewModel: ProductsViewModel, productList: ProductList) {
         self.productsViewModel = productsViewModel
+        self.productList = productList
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,7 +30,9 @@ class ProductsListViewController: UIViewController {
         super.viewDidLoad()
         layout()
         setup()
-        configureProducts()
+        if productList == .all {
+            configureProducts()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,14 +95,14 @@ class ProductsListViewController: UIViewController {
 
 extension ProductsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return productsViewModel.numberOfRowsInSection(for: .all)
+        return productsViewModel.numberOfRowsInSection(for: productList)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuseID, for: indexPath) as? ProductTableViewCell else {
             preconditionFailure("could not dequeue ProductTableViewCell for \(indexPath)")
         }
-        let product = productsViewModel.product(at: indexPath, for: .all)
+        let product = productsViewModel.product(at: indexPath, for: productList)
         cell.titleLabel.text = product.title
         cell.descriptionLabel.text = product.description
         cell.priceLabel.text = "\(product.price)"
