@@ -10,6 +10,8 @@ import SDWebImage
 
 class ProductsListViewController: UIViewController {
     
+    private var isLoading = false
+
     let productsViewModel: ProductsViewModel
     let productList: ProductList
     lazy var tableView = newTableView()
@@ -31,7 +33,7 @@ class ProductsListViewController: UIViewController {
         layout()
         setup()
         if productList == .all {
-            configureProducts()
+            fetchProducts()
         }
     }
     
@@ -64,9 +66,12 @@ class ProductsListViewController: UIViewController {
     }
 
     // MARK: - Configure
-    func configureProducts() {
+    func fetchProducts() {
+        guard !isLoading else { return }
+        isLoading = true
         productsViewModel.fetchProducts { [weak self] error in
             guard let self = self else { return }
+            self.isLoading = false
             DispatchQueue.main.async {
                 guard error == nil else {
                     let title = String(localized: "Error fetching products")
@@ -75,6 +80,12 @@ class ProductsListViewController: UIViewController {
                 }
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 0 && scrollView.contentOffset.y > tableView.contentSize.height - tableView.bounds.height {
+            fetchProducts()
         }
     }
     

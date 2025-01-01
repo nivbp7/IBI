@@ -9,9 +9,13 @@ import Foundation
 
 final class ProductsViewModel {
     
+    static let baseURL = "https://dummyjson.com/products"
+
     private let networkAccess: NetworkAccessing
     private let productStore: ProductStoring
     
+    private var currentPage = 0
+    private let limit = 10
     var products: [Product] = []
     var favoriteProducts: [Product] = []
     
@@ -23,7 +27,8 @@ final class ProductsViewModel {
     
     // MARK: - Public - load products
     func fetchProducts(with completion: @escaping (Error?) -> Void) {
-        guard let url = URL(string: "https://dummyjson.com/products") else {
+        let urlString = "\(ProductsViewModel.baseURL)?limit=\(limit)&skip=\(currentPage * limit)"
+        guard let url = URL(string: urlString) else {
             completion(NetworkError.invalidURL)
             return
         }
@@ -35,7 +40,8 @@ final class ProductsViewModel {
                 let result: Result<Products, Error> = data.parse()
                 switch result {
                 case .success(let products):
-                    self.products = products.products
+                    self.products.append(contentsOf: products.products)
+                    self.currentPage += 1
                     completion(nil)
                 case .failure(let error):
                     completion(error)
