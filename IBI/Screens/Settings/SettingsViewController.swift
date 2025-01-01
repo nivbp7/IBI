@@ -11,6 +11,13 @@ final class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = UIColor(named: "AppColor")
+        self.tabBarController?.tabBar.standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            self.tabBarController?.tabBar.scrollEdgeAppearance = appearance
+        }
+
     }
 }

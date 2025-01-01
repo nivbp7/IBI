@@ -52,6 +52,12 @@ class ProductsListViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .systemBackground
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = UIColor(named: "AppColor")
+        self.tabBarController?.tabBar.standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            self.tabBarController?.tabBar.scrollEdgeAppearance = appearance
+        }
     }
 
     // MARK: - Configure

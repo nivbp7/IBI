@@ -23,12 +23,12 @@ final class MainTabBarController: UITabBarController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,13 +38,6 @@ final class MainTabBarController: UITabBarController {
     
     // MARK: - Setup
     private func setup() {
-        self.delegate = self
-        
-        tabBar.barTintColor = UIColor.orange
-        tabBar.tintColor = UIColor(named: "AppColor")
-        tabBar.backgroundColor = .white
-        view.backgroundColor = .clear
-
         setupChildViewControllers()
     }
     
@@ -74,7 +67,6 @@ final class MainTabBarController: UITabBarController {
             showLoginViewController()
         }
     }
-    
     
     private func showLoginViewController() {
         let loginViewController = LoginViewController(delegate: self)
