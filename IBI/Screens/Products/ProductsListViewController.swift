@@ -10,9 +10,9 @@ import SDWebImage
 
 final class ProductsListViewController: UIViewController {
     
-    private lazy var tableView = newTableView()
-    
     private let productsViewModel: ProductsViewModel
+    
+    private lazy var tableView = newTableView()
     
     // MARK: - Initialization
     init(productsViewModel: ProductsViewModel) {
@@ -113,7 +113,7 @@ extension ProductsListViewController: UITableViewDelegate {
             preconditionFailure("product out of bounds for \(indexPath)")
         }
         let product = productsViewModel.products[indexPath.row]
-        let productDetailViewController = ProductsLDetailViewController(product: product)
+        let productDetailViewController = ProductsDetailViewController(product: product, productsViewModel: productsViewModel)
         navigationController?.pushViewController(productDetailViewController, animated: true)
     }
 }

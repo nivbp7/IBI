@@ -12,6 +12,7 @@ struct Products: Codable {
 }
 
 struct Product: Codable {
+    let id: Int
     let title: String
     let description: String
     let price: Double
@@ -21,10 +22,11 @@ struct Product: Codable {
 }
 
 extension Product {
-    static let dummyProduct = Product(title: "Product Title",
+    static let dummyProduct = Product(id: 1,
+                                      title: "Product Title",
                                       description: "Product Description",
-                                        price: 100.0,
-                                        brand: "Product Brand",
-                                        thumbnail: "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
-                                        images: ["Image1", "Image2", "Image3"])
+                                      price: 100.0,
+                                      brand: "Product Brand",
+                                      thumbnail: "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
+                                      images: ["Image1", "Image2", "Image3"])
 }

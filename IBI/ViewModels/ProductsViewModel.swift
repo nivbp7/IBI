@@ -10,12 +10,14 @@ import Foundation
 final class ProductsViewModel {
     
     private let networkAccess: NetworkAccessing
+    private let productStore: ProductStoring
     
     var products: [Product] = []
     
     // MARK: - Initialization
-    init(networkAccess: NetworkAccessing) {
+    init(networkAccess: NetworkAccessing, productStore: ProductStoring) {
         self.networkAccess = networkAccess
+        self.productStore = productStore
     }
     
     // MARK: - Public
@@ -41,5 +43,20 @@ final class ProductsViewModel {
                 completion(error)
             }
         }
+    }
+    
+    func didFavoriteProduct(with id: Int) -> Bool {
+        if productStore.isFavorite(productID: id) {
+            productStore.remove(productID: id)
+            return false
+        } else {
+            guard let product = products.first(where: { $0.id == id }) else {return false}
+            productStore.add(product: product)
+            return true
+        }
+    }
+    
+    func isFavorite(product: Product) -> Bool {
+        return productStore.isFavorite(productID: product.id)
     }
 }

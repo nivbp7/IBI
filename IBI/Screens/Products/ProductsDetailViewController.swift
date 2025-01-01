@@ -8,9 +8,10 @@
 import UIKit
 import SDWebImage
 
-class ProductsLDetailViewController: UIViewController {
+class ProductsDetailViewController: UIViewController {
 
     let product: Product
+    let productsViewModel: ProductsViewModel
     
     private let productDescriptionLabel = UILabel()
     private let productPriceLabel = UILabel()
@@ -18,8 +19,9 @@ class ProductsLDetailViewController: UIViewController {
     private let favoriteButton = UIButton()
     
     // MARK: - Initialization
-    init(product: Product) {
+    init(product: Product, productsViewModel: ProductsViewModel) {
         self.product = product
+        self.productsViewModel = productsViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -94,7 +96,8 @@ class ProductsLDetailViewController: UIViewController {
     }
     
     private func setupButton() {
-        favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        let image = productsViewModel.isFavorite(product: product) ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        favoriteButton.setImage(image, for: .normal)
         favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
     }
     
@@ -131,8 +134,9 @@ class ProductsLDetailViewController: UIViewController {
     
     //MARK: - Actions
     @objc private func favoriteButtonTapped() {
+        let didFavorite = productsViewModel.didFavoriteProduct(with: product.id)
         let image = favoriteButton.imageView?.image
-        if image == UIImage(systemName: "heart") {
+        if didFavorite {
             favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -152,8 +156,8 @@ class ProductsLDetailViewController: UIViewController {
             imageView.sd_setImage(with: URL(string: imageName)!, placeholderImage: nil)
             imageView.contentMode = .scaleAspectFit
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true // Set a fixed height
-            imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true // Set a fixed width
+            imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+            imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
             stackView.addArrangedSubview(imageView)
         }
         

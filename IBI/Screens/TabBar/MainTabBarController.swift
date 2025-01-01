@@ -87,7 +87,8 @@ final class MainTabBarController: UITabBarController {
     //MARK: - Factory
     private func newProductsViewModel() -> ProductsViewModel {
         let networkAccess = URLSessionNetworkAccess()
-        let productsViewModel = ProductsViewModel(networkAccess: networkAccess)
+        let productStore = ProductStore()
+        let productsViewModel = ProductsViewModel(networkAccess: networkAccess, productStore: productStore)
         return productsViewModel
     }
 }
