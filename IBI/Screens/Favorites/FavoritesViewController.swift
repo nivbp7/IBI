@@ -36,8 +36,9 @@ extension FavoritesViewController {
         cell.descriptionLabel.text = product.description
         cell.priceLabel.text = "\(product.price)"
         cell.brandLabel.text = product.brand
-        cell.productImageView.sd_setImage(with: URL(string: product.thumbnail)!, placeholderImage: nil)
-
+        if let imageURL = URL(string: product.thumbnail) {
+            cell.productImageView.sd_setImage(with: imageURL, placeholderImage: nil)
+        }
         return cell
     }
 }

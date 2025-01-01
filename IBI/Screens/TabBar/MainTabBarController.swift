@@ -48,15 +48,16 @@ final class MainTabBarController: UITabBarController {
         let tabBarViewControllers = [productsListViewController, settingsViewController, favoritesViewController]
 
         for (i, tabBarItem) in TabBarItem.allCases.enumerated() {
-            let item = createBarItem(for: tabBarItem.title)
+            let image = tabBarItem.image ?? UIImage()
+            let item = createBarItem(for: tabBarItem.title, image: image)
             let vc = tabBarViewControllers[i]
             vc.tabBarItem = item
         }
         self.viewControllers = tabBarViewControllers
     }
     
-    private func createBarItem(for title: String) -> UITabBarItem {
-        return UITabBarItem(title: title, image: nil, selectedImage: nil)
+    private func createBarItem(for title: String, image: UIImage) -> UITabBarItem {
+        return UITabBarItem(title: title, image: image, selectedImage: nil)
     }
     
     //MARK: - Login flow
@@ -111,6 +112,14 @@ enum TabBarItem: CaseIterable {
             return String(localized: "Settings")
         case .favorites:
             return String(localized: "Favorites")
+        }
+    }
+    
+    var image: UIImage? {
+        switch self {
+        case .products: return UIImage(systemName: "house")
+        case .settings: return UIImage(systemName: "gear")
+        case .favorites: return UIImage(systemName: "heart")
         }
     }
 }

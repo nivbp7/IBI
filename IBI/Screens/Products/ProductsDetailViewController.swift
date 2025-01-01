@@ -153,13 +153,15 @@ class ProductsDetailViewController: UIViewController {
         stackView.distribution = .equalSpacing
         
         for imageName in product.images {
-            let imageView = UIImageView()
-            imageView.sd_setImage(with: URL(string: imageName)!, placeholderImage: nil)
-            imageView.contentMode = .scaleAspectFit
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-            imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-            stackView.addArrangedSubview(imageView)
+            if let imageURL = URL(string: imageName) {
+                let imageView = UIImageView()
+                imageView.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "photo.on.rectangle"))
+                imageView.contentMode = .scaleAspectFit
+                imageView.translatesAutoresizingMaskIntoConstraints = false
+                imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+                imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+                stackView.addArrangedSubview(imageView)
+            }
         }
         
         return stackView
