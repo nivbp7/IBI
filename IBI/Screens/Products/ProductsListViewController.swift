@@ -53,6 +53,7 @@ class ProductsListViewController: UIViewController {
     // MARK: - Setup
     private func setup() {
         setupView()
+        setupNavigationBar()
     }
     
     private func setupView() {
@@ -64,8 +65,21 @@ class ProductsListViewController: UIViewController {
             self.tabBarController?.tabBar.scrollEdgeAppearance = appearance
         }
     }
+    
+    func setupNavigationBar() {
+        let reloadButton = UIBarButtonItem(title: String(localized: "Reload"), style: .done, target: self, action: #selector(didClickReload))
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.topItem?.title = String(localized: "Products")
+        navigationItem.rightBarButtonItem = reloadButton
+    }
 
-    // MARK: - Configure
+    // MARK: - Actions
+    @objc func didClickReload() {
+        productsViewModel.resetProducts()
+        fetchProducts()
+    }
+    
+    // MARK: - Fetch
     func fetchProducts() {
         guard !isLoading else { return }
         isLoading = true

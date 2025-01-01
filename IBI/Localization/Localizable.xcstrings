@@ -272,6 +272,16 @@
         }
       }
     },
+    "Reload" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "טעינה מחדש"
+          }
+        }
+      }
+    },
     "Settings" : {
       "localizations" : {
         "he" : {

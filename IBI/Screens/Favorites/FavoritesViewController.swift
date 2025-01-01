@@ -15,6 +15,11 @@ final class FavoritesViewController: ProductsListViewController {
         configure()
     }
     
+    override func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.topItem?.title = String(localized: "Favorites")
+    }
+    
     // MARK: - Configure
     func configure() {
         productsViewModel.loadFavoriteProducts()

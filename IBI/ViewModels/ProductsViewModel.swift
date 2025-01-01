@@ -25,7 +25,7 @@ final class ProductsViewModel {
         self.productStore = productStore
     }
     
-    // MARK: - Public - load products
+    // MARK: - Public - retrive products
     func fetchProducts(with completion: @escaping (Error?) -> Void) {
         let urlString = "\(ProductsViewModel.baseURL)?limit=\(limit)&skip=\(currentPage * limit)"
         guard let url = URL(string: urlString) else {
@@ -54,6 +54,12 @@ final class ProductsViewModel {
     
     func loadFavoriteProducts() {
         favoriteProducts = productStore.favoriteProducts()
+    }
+    
+    //MARK: - Public - reset
+    func resetProducts() {
+        products = []
+        currentPage = 0
     }
     
     // MARK: - Public - products actions

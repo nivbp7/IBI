@@ -42,10 +42,15 @@ final class MainTabBarController: UITabBarController {
     
     private func setupChildViewControllers() {
         let productsListViewController = ProductsListViewController(productsViewModel: productsViewModel, productList: .all)
+        let productsListNavigationController = UINavigationController(rootViewController: productsListViewController)
+
         let settingsViewController = SettingsViewController(delegate: self)
-        let favoritesViewController = FavoritesViewController(productsViewModel: productsViewModel, productList: .favorites)
         
-        let tabBarViewControllers = [productsListViewController, settingsViewController, favoritesViewController]
+        
+        let favoritesViewController = FavoritesViewController(productsViewModel: productsViewModel, productList: .favorites)
+        let favoritesNavigationController = UINavigationController(rootViewController: favoritesViewController)
+        
+        let tabBarViewControllers = [productsListNavigationController, settingsViewController, favoritesNavigationController]
 
         for (i, tabBarItem) in TabBarItem.allCases.enumerated() {
             let image = tabBarItem.image ?? UIImage()
@@ -95,6 +100,7 @@ extension MainTabBarController: SettingsViewControllerDelegate {
 extension MainTabBarController: LoginViewControllerDelegate {
     func loginViewControllerDidLogin(_ loginViewController: LoginViewController) {
         UserDefaults.isLoggedIn = true
+        self.selectedIndex = 0
         self.dismiss(animated: true)
     }
 }

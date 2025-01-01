@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds) //fill the screen
         window?.windowScene = windowScene
         //set the root VC we want to show
-        window?.rootViewController = createMainNavigationController()
+        window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
     }
     
