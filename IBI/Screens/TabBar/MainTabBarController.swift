@@ -106,14 +106,11 @@ enum TabBarItem: CaseIterable {
     var title: String {
         switch self {
         case .products: 
-            let text = String(localized: "Products")
-            return text
+            return String(localized: "Products")
         case .settings:
-            let text = String(localized: "Settings")
-            return text
+            return String(localized: "Settings")
         case .favorites:
-            let text = String(localized: "Favorites")
-            return text
+            return String(localized: "Favorites")
         }
     }
 }

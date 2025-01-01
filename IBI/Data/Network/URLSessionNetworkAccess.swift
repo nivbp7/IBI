@@ -11,13 +11,6 @@ protocol NetworkAccessing {
     func fetchData(for request: Request) async throws -> Data
 }
 
-enum NetworkError: Error {
-    case networkError(text: String?)
-    case responseError
-    case invalidData
-    case invalidURL
-}
-
 final class URLSessionNetworkAccess: NetworkAccessing {
     
     private let session: URLSession
@@ -44,4 +37,11 @@ final class URLSessionNetworkAccess: NetworkAccessing {
             throw NetworkError.networkError(text: error.localizedDescription)
         }
     }
+}
+
+enum NetworkError: Error {
+    case networkError(text: String?)
+    case responseError
+    case invalidData
+    case invalidURL
 }
