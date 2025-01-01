@@ -12,7 +12,7 @@ extension UIViewController {
     public func presentInformationAlertController(title: String?, message: String?, okActionHandler: ((UIAlertAction) -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: okActionHandler)
+        let okAction = UIAlertAction(title: String(localized: "OK"), style: .cancel, handler: okActionHandler)
         
         alertController.addAction(okAction)
         

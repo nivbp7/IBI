@@ -141,7 +141,8 @@ final class LoginViewController: UIViewController {
     }
     
     private func setupTitle() {
-        titleLabel.text = "Login Screen"
+        let title = String(localized: "Login Screen")
+        titleLabel.text = title
         titleLabel.textAlignment = .center
         titleLabel.textColor = .label
     }
@@ -196,7 +197,9 @@ final class LoginViewController: UIViewController {
             return
         }
         guard let username = usernameTextField.text, let password = passwordTextField.text, username == Strings.username, password == Strings.password else {
-            presentInformationAlertController(title: "Incorrect username or password", message: "Please enter a valid username and password")
+            let title = String(localized: "Incorrect username or password")
+            let message = String(localized: "Please enter a valid username and password")
+            presentInformationAlertController(title: title, message: message)
             return
         }
         delegate?.loginViewControllerDidLogin(self)
@@ -204,10 +207,10 @@ final class LoginViewController: UIViewController {
     
     private func authenticateUser() {
         let context = LAContext()
-        context.localizedCancelTitle = "Cancel"
-        context.localizedFallbackTitle = "Use Passcode"
+        context.localizedCancelTitle = String(localized: "Cancel")
+        context.localizedFallbackTitle = String(localized: "Use Passcode")
         
-        let reason = "Authenticate to access your account"
+        let reason = String(localized: "Authenticate to access your account")
         var error: NSError?
         
         if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
@@ -217,12 +220,15 @@ final class LoginViewController: UIViewController {
                         self.dismiss(animated: true)
                         self.delegate?.loginViewControllerDidLogin(self)
                     } else {
-                        self.presentInformationAlertController(title: "Failed", message: authenticationError?.localizedDescription)
+                        let title = String(localized: "Authentication failed")
+                        self.presentInformationAlertController(title: title, message: authenticationError?.localizedDescription)
                     }
                 }
             }
         } else {
-            self.presentInformationAlertController(title: "Error", message: "Your device does not support this feature")
+            let title = String(localized: "Error")
+            let message = String(localized: "Your device does not support this feature")
+            self.presentInformationAlertController(title: title, message: message)
         }
     }
     

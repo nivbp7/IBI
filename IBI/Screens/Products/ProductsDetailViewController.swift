@@ -102,14 +102,16 @@ class ProductsDetailViewController: UIViewController {
     }
     
     private func setupLabels() {
-        productPriceLabel.text = "Price: \(product.price)"
+        let price = String(localized: "Price:")
+        productPriceLabel.text = "\(price) \(product.price)"
         productPriceLabel.textColor = .label
         productPriceLabel.textAlignment = .left
         
         if let brand = product.brand {
-            productBrandLabel.text = "Brand: \(brand)"
+            let brandText = String(localized: "Brand:")
+            productBrandLabel.text = "\(brandText) \(brand)"
         } else {
-            productBrandLabel.text = "Brand: Unknown"
+            productBrandLabel.text = String(localized: "Brand unknown")
         }
         productBrandLabel.textColor = .label
         productBrandLabel.textAlignment = .left

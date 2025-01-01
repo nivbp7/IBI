@@ -1,0 +1,216 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Authenticate to access your account" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אימות כדי להכנס לחשבון"
+          }
+        }
+      }
+    },
+    "Authenticate with Face ID/Touch ID" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אימות עם זיהוי פנים/אצבע"
+          }
+        }
+      }
+    },
+    "Authentication failed" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אימות נכשל"
+          }
+        }
+      }
+    },
+    "Brand unknown" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "חברה לא ידועה"
+          }
+        }
+      }
+    },
+    "Brand:" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "חברה:"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ביטול"
+          }
+        }
+      }
+    },
+    "Error" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שגיאה"
+          }
+        }
+      }
+    },
+    "Error fetching products" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נכשלה בקשת מוצרים"
+          }
+        }
+      }
+    },
+    "Favorites" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מועדפים"
+          }
+        }
+      }
+    },
+    "Incorrect username or password" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שם משתמש או סיסמא אינם נכונים"
+          }
+        }
+      }
+    },
+    "Login" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "התחבר/י"
+          }
+        }
+      }
+    },
+    "Login Screen" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מסך כניסה"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "המשך"
+          }
+        }
+      }
+    },
+    "Password" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "סיסמא"
+          }
+        }
+      }
+    },
+    "Please enter a valid username and password" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אנא הכנס/י שם משתמש וסיסמא מתאימים"
+          }
+        }
+      }
+    },
+    "Price:" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מחיר:"
+          }
+        }
+      }
+    },
+    "Products" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מוצרים"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הגדרות"
+          }
+        }
+      }
+    },
+    "Use Passcode" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "השמתש/י בסיסמא"
+          }
+        }
+      }
+    },
+    "Username" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שם משמתש"
+          }
+        }
+      }
+    },
+    "Your device does not support this feature" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אימות לא נתמך במכשירך"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

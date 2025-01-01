@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func createMainNavigationController() -> UINavigationController {
-        let rootViewController = MainTabBarController()
+        let rootViewController = LoginViewController(delegate: nil)
         let navigationController = UINavigationController(rootViewController: rootViewController)
         return navigationController
     }

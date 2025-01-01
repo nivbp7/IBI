@@ -66,7 +66,8 @@ class ProductsListViewController: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 guard error == nil else {
-                    self.presentInformationAlertController(title: "Error fetching products", message: error?.localizedDescription)
+                    let title = String(localized: "Error fetching products")
+                    self.presentInformationAlertController(title: title, message: error?.localizedDescription)
                     return
                 }
                 self.tableView.reloadData()

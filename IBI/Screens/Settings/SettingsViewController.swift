@@ -18,6 +18,5 @@ final class SettingsViewController: UIViewController {
         if #available(iOS 15.0, *) {
             self.tabBarController?.tabBar.scrollEdgeAppearance = appearance
         }
-
     }
 }
