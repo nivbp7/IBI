@@ -14,12 +14,10 @@ protocol SettingsViewControllerDelegate: AnyObject {
 final class SettingsViewController: UIViewController {
     
     weak var delegate: SettingsViewControllerDelegate?
-
-    private let languages = ["en", "he"]
     
     private let languageLabel = UILabel()
     private let displayLabel = UILabel()
-    private let languageSegmentedControl = UISegmentedControl(items: ["English", "Hebrew"])
+    private let languageSegmentedControl = UISegmentedControl(items: [Language.english.title, Language.hebrew.title])
     private let displaySegmentedControl = UISegmentedControl(items: [Appearance.light.title, Appearance.dark.title])
     private let logoutButton = UIButton()
     
@@ -128,9 +126,9 @@ final class SettingsViewController: UIViewController {
     }
     
     private func setupButton() {
-        let title = String(localized: "logout")
+        let title = String(localized: "Logout")
         logoutButton.setTitle(title, for: .normal)
-        logoutButton.setTitleColor(.label, for: .normal)
+        logoutButton.setTitleColor(.white, for: .normal)
         logoutButton.backgroundColor = .systemRed
         logoutButton.layer.cornerRadius = 10
         logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
@@ -143,16 +141,17 @@ final class SettingsViewController: UIViewController {
     
     // MARK: - Language
     private func getCurrentLanguageIndex() -> Int {
-        let currentLanguage = Locale.current.language.languageCode?.identifier ?? "en"
-        return languages.firstIndex(of: currentLanguage) ?? 0
+        let languageCode = Locale.current.language.languageCode?.identifier ?? Language.english.code
+        let language = Language.allCases.first(where: {$0.code == languageCode}) ?? Language.english
+        return language.index
     }
 
     @objc private func languageChanged() {
-        let selectedLanguage = languages[languageSegmentedControl.selectedSegmentIndex]
+        let selectedLanguage = Language.at(languageSegmentedControl.selectedSegmentIndex).code
         setAppLanguage(selectedLanguage)
 
-        let alert = UIAlertController(title: "Language Changed", message: "Please restart the app to apply the new language.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        let alert = UIAlertController(title: String(localized: "Language Changed"), message: String(localized:"Please restart the app to apply the new language."), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String(localized: "OK"), style: .default))
         present(alert, animated: true)
     }
 
@@ -177,6 +176,38 @@ final class SettingsViewController: UIViewController {
         } else {
             self.view.window?.overrideUserInterfaceStyle = .light
         }
+    }
+}
+
+enum Language: String, CaseIterable {
+    case english
+    case hebrew
+    
+    var title: String {
+        switch self {
+        case .english: return String(localized: "English")
+        case .hebrew: return String(localized: "Hebrew")
+        }
+    }
+    
+    var code: String {
+        switch self {
+        case .english: return "en"
+        case .hebrew: return "he"
+        }
+    }
+    
+    var index: Self.AllCases.Index {
+        if let index = Self.allCases.firstIndex(where: {self == $0}) {
+            return index
+        }
+        else{
+            return 0
+        }
+    }
+    
+    static func at(_ index: Int) -> Language {
+        return Language.allCases[index]
     }
 }
 

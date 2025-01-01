@@ -62,10 +62,34 @@
       }
     },
     "Dark" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "כהה"
+          }
+        }
+      }
     },
     "Display" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "תצוגה"
+          }
+        }
+      }
+    },
+    "English" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אנגלית"
+          }
+        }
+      }
     },
     "Error" : {
       "localizations" : {
@@ -97,6 +121,16 @@
         }
       }
     },
+    "Hebrew" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עברית"
+          }
+        }
+      }
+    },
     "Incorrect username or password" : {
       "localizations" : {
         "he" : {
@@ -108,10 +142,34 @@
       }
     },
     "Language" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שפה"
+          }
+        }
+      }
+    },
+    "Language Changed" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שפה השתנתה"
+          }
+        }
+      }
     },
     "Light" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בהירה"
+          }
+        }
+      }
     },
     "Login" : {
       "localizations" : {
@@ -134,7 +192,25 @@
       }
     },
     "logout" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "התנתק/י"
+          }
+        }
+      }
+    },
+    "Logout" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "התנתק/י"
+          }
+        }
+      }
     },
     "OK" : {
       "localizations" : {
@@ -162,6 +238,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אנא הכנס/י שם משתמש וסיסמא מתאימים"
+          }
+        }
+      }
+    },
+    "Please restart the app to apply the new language." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אנא אתחל/י את האפליקציה כדי להציג את השפה החדשה"
           }
         }
       }
