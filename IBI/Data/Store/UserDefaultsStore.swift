@@ -26,4 +26,7 @@ struct UserDefault<Value> {
 extension UserDefaults {
     @UserDefault(key: "isLoggedIn", defaultValue: false)
     static var isLoggedIn: Bool
+    
+    @UserDefault(key: "applicationAppearance", defaultValue: Appearance.defaultAppearance.rawValue)
+    static var applicationAppearance: String
 }

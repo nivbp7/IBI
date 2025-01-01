@@ -61,6 +61,12 @@
         }
       }
     },
+    "Dark" : {
+
+    },
+    "Display" : {
+
+    },
     "Error" : {
       "localizations" : {
         "he" : {
@@ -100,6 +106,12 @@
           }
         }
       }
+    },
+    "Language" : {
+
+    },
+    "Light" : {
+
     },
     "Login" : {
       "localizations" : {
