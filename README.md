@@ -22,3 +22,4 @@ Known Issues:
 * Adding a scroll view to the logic screen so that the user can tap the login button when the keyboard is showing.
 * Localization is implemented using Xcode's built-in [String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog). It appears that there is no simple way to update the localization without resetting the app. A different approach could be to have a language dictionary, in which a string that indicates the purpose can be translated for each language, making it work on the fly.
 * Displaying images in the detail screen would be better implemented with a Collection View
+* Pagination is working, however it would be nicer to add a loading spinner at the bottom and also during the initial load
