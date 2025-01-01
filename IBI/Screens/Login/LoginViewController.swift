@@ -15,8 +15,7 @@ protocol LoginViewControllerDelegate: AnyObject {
 
 final class LoginViewController: UIViewController {
     
-    private let username = "IBI"
-    private let password = "password"
+    private let authenticateText = String(localized: "Authenticate with Face ID/Touch ID")
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -27,7 +26,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var imageView = newLottieAnimationView()
     
-   private weak var delegate: LoginViewControllerDelegate?
+    private weak var delegate: LoginViewControllerDelegate?
     
     // MARK: - Initialization
     init(delegate: LoginViewControllerDelegate?) {
@@ -53,7 +52,6 @@ final class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        authenticateUser()
     }
     
     // MARK: - Observers
@@ -149,14 +147,13 @@ final class LoginViewController: UIViewController {
     }
     
     private func setupButton() {
-        let buttonText = String(localized: "Login")
-        actionButton.setTitle(buttonText, for: .normal)
+        configureButton(for: authenticateText)
         actionButton.setTitleColor(.white, for: .normal)
         actionButton.addTarget(self, action: #selector(didTapActionButton), for: .touchUpInside)
         actionButton.backgroundColor = UIColor(named: "AppColor")
         actionButton.layer.cornerRadius = 10
     }
-
+    
     private func setupTextField() {
         let usernameText = String(localized: "Username")
         let passwordText = String(localized: "Password")
@@ -181,20 +178,27 @@ final class LoginViewController: UIViewController {
         passwordTextField.clearButtonMode = .whileEditing
         passwordTextField.textContentType = .password
         passwordTextField.delegate = self
+        
+        usernameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    // MARK: - Configure
+    private func configureButton(for title: String) {
+        actionButton.setTitle(title, for: .normal)
     }
     
     // MARK: - Validation
     @objc private func validateTextFieldInputs() {
         dismissKeyboard()
-        guard let username = usernameTextField.text, let password = passwordTextField.text, !username.trim.isEmpty, !password.trim.isEmpty else {
-            presentInformationAlertController(title: "Missing username or password", message: "Please enter your username and password")
+        guard !areTextFieldEmpty() else {
+            authenticateUser()
             return
         }
-        guard username == self.username, password == self.password else {
+        guard let username = usernameTextField.text, let password = passwordTextField.text, username == Strings.username, password == Strings.password else {
             presentInformationAlertController(title: "Incorrect username or password", message: "Please enter a valid username and password")
             return
         }
-        
         delegate?.loginViewControllerDidLogin(self)
     }
     
@@ -202,10 +206,10 @@ final class LoginViewController: UIViewController {
         let context = LAContext()
         context.localizedCancelTitle = "Cancel"
         context.localizedFallbackTitle = "Use Passcode"
-
+        
         let reason = "Authenticate to access your account"
         var error: NSError?
-
+        
         if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
             context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
                 DispatchQueue.main.async {
@@ -221,7 +225,7 @@ final class LoginViewController: UIViewController {
             self.presentInformationAlertController(title: "Error", message: "Your device does not support this feature")
         }
     }
-
+    
     // MARK: - Actions
     @objc private func didTapActionButton() {
         validateTextFieldInputs()
@@ -231,10 +235,30 @@ final class LoginViewController: UIViewController {
         dismissKeyboard()
     }
     
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        if areTextFieldEmpty() {
+            configureButton(for: authenticateText)
+        } else {
+            let title = String(localized: "Login")
+            configureButton(for: title)
+        }
+    }
+    
     // MARK: - Helpers
     private func dismissKeyboard() {
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+    }
+    
+    private func areTextFieldEmpty() -> Bool {
+        if let username = usernameTextField.text,
+           let password = passwordTextField.text,
+           username.trim.isEmpty,
+           password.trim.isEmpty {
+            return true
+        } else {
+            return false
+        }
     }
     
     // MARK: - Factory
