@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol SettingsViewControllerDelegate: AnyObject {
+    func settingsViewControllerDidLogout(_ settingsViewController: SettingsViewController)
+}
+
 final class SettingsViewController: UIViewController {
+    
+    weak var delegate: SettingsViewControllerDelegate?
 
     private let languages = ["en", "he"]
     
@@ -17,8 +23,10 @@ final class SettingsViewController: UIViewController {
     private let displaySegmentedControl = UISegmentedControl(items: [Appearance.light.title, Appearance.dark.title])
     private let logoutButton = UIButton()
     
+    
     // MARK: - Initialization
-    init() {
+    init(delegate: SettingsViewControllerDelegate?) {
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -130,7 +138,7 @@ final class SettingsViewController: UIViewController {
     
     // MARK: - Actions
     @objc private func logout() {
-        UserDefaults.isLoggedIn = false
+        delegate?.settingsViewControllerDidLogout(self)
     }
     
     // MARK: - Language
@@ -202,5 +210,16 @@ enum Appearance: String, CaseIterable {
     
     static func at(_ index: Int) -> Appearance {
         return Appearance.allCases[index]
+    }
+}
+
+extension Appearance {
+    var userInterfaceStyle: UIUserInterfaceStyle {
+        switch self {
+        case .light:
+            return .light
+        case .dark:
+            return .dark
+        }
     }
 }

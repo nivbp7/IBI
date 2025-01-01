@@ -23,7 +23,6 @@ final class MainTabBarController: UITabBarController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
         setup()
     }
     
@@ -43,7 +42,7 @@ final class MainTabBarController: UITabBarController {
     
     private func setupChildViewControllers() {
         let productsListViewController = ProductsListViewController(productsViewModel: productsViewModel)
-        let settingsViewController = SettingsViewController()
+        let settingsViewController = SettingsViewController(delegate: self)
         let favoritesViewController = FavoritesViewController(productsViewModel: productsViewModel)
         
         let tabBarViewControllers = [productsListViewController, settingsViewController, favoritesViewController]
@@ -59,7 +58,6 @@ final class MainTabBarController: UITabBarController {
     private func createBarItem(for title: String) -> UITabBarItem {
         return UITabBarItem(title: title, image: nil, selectedImage: nil)
     }
-    
     
     //MARK: - Login flow
     private func performLoginFlow() {
@@ -85,8 +83,12 @@ final class MainTabBarController: UITabBarController {
     }
 }
 
-extension MainTabBarController: UITabBarControllerDelegate {
-    
+extension MainTabBarController: SettingsViewControllerDelegate {
+    func settingsViewControllerDidLogout(_ settingsViewController: SettingsViewController) {
+        UserDefaults.isLoggedIn = false
+        tabBarController?.selectedIndex = 0
+        showLoginViewController()
+    }
 }
 
 extension MainTabBarController: LoginViewControllerDelegate {
@@ -112,7 +114,6 @@ enum TabBarItem: CaseIterable {
         case .favorites:
             let text = String(localized: "Favorites")
             return text
-            
         }
     }
 }
