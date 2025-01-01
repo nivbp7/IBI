@@ -51,7 +51,7 @@ final class MainTabBarController: UITabBarController {
     private func setupChildViewControllers() {
         let productsListViewController = ProductsListViewController(productsViewModel: productsViewModel)
         let settingsViewController = SettingsViewController()
-        let favoritesViewController = FavoritesViewController()
+        let favoritesViewController = FavoritesViewController(productsViewModel: productsViewModel)
         
         let tabBarViewControllers = [productsListViewController, settingsViewController, favoritesViewController]
 

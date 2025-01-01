@@ -8,9 +8,9 @@
 import UIKit
 import SDWebImage
 
-final class ProductsListViewController: UIViewController {
+class ProductsListViewController: UIViewController {
     
-    private let productsViewModel: ProductsViewModel
+    let productsViewModel: ProductsViewModel
     
     private lazy var tableView = newTableView()
     
@@ -55,7 +55,7 @@ final class ProductsListViewController: UIViewController {
     }
 
     // MARK: - Configure
-    private func configureProducts() {
+    func configureProducts() {
         productsViewModel.fetchProducts { [weak self] error in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -85,17 +85,14 @@ final class ProductsListViewController: UIViewController {
 
 extension ProductsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return productsViewModel.products.count
+        return productsViewModel.numberOfRowsInSection(for: .all)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuseID, for: indexPath) as? ProductTableViewCell else {
             preconditionFailure("could not dequeue ProductTableViewCell for \(indexPath) ")
         }
-        guard indexPath.row < productsViewModel.products.count else {
-            preconditionFailure("product out of bounds for \(indexPath)")
-        }
-        let product = productsViewModel.products[indexPath.row]
+        let product = productsViewModel.product(at: indexPath, for: .all)
         cell.titleLabel.text = product.title
         cell.descriptionLabel.text = product.description
         cell.priceLabel.text = "\(product.price)"
@@ -109,10 +106,7 @@ extension ProductsListViewController: UITableViewDataSource {
 extension ProductsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard indexPath.row < productsViewModel.products.count else {
-            preconditionFailure("product out of bounds for \(indexPath)")
-        }
-        let product = productsViewModel.products[indexPath.row]
+        let product = productsViewModel.product(at: indexPath, for: .all)
         let productDetailViewController = ProductsDetailViewController(product: product, productsViewModel: productsViewModel)
         navigationController?.pushViewController(productDetailViewController, animated: true)
     }

@@ -13,6 +13,7 @@ final class ProductsViewModel {
     private let productStore: ProductStoring
     
     var products: [Product] = []
+    var favoriteProducts: [Product] = []
     
     // MARK: - Initialization
     init(networkAccess: NetworkAccessing, productStore: ProductStoring) {
@@ -20,7 +21,7 @@ final class ProductsViewModel {
         self.productStore = productStore
     }
     
-    // MARK: - Public
+    // MARK: - Public - load products
     func fetchProducts(with completion: @escaping (Error?) -> Void) {
         guard let url = URL(string: "https://dummyjson.com/products") else {
             completion(NetworkError.invalidURL)
@@ -45,6 +46,11 @@ final class ProductsViewModel {
         }
     }
     
+    func loadFavoriteProducts() {
+        favoriteProducts = productStore.favoriteProducts()
+    }
+    
+    // MARK: - Public - products actions
     func didFavoriteProduct(with id: Int) -> Bool {
         if productStore.isFavorite(productID: id) {
             productStore.remove(productID: id)
@@ -59,4 +65,32 @@ final class ProductsViewModel {
     func isFavorite(product: Product) -> Bool {
         return productStore.isFavorite(productID: product.id)
     }
+    
+    //MARK: - Table view
+    func numberOfRowsInSection(for productList: ProductList) -> Int {
+        switch productList {
+        case .all: return products.count
+        case .favorites: return favoriteProducts.count
+        }
+    }
+    
+    func product(at indexPath: IndexPath, for productList: ProductList) -> Product {
+        switch productList {
+        case .all:
+            guard indexPath.row < products.count else {
+                preconditionFailure("product out of bounds for \(indexPath)")
+            }
+            return products[indexPath.row]
+        case .favorites:
+            guard indexPath.row < favoriteProducts.count else {
+                preconditionFailure("product out of bounds for \(indexPath)")
+            }
+            return favoriteProducts[indexPath.row]
+        }
+    }
+}
+
+enum ProductList {
+    case all
+    case favorites
 }
