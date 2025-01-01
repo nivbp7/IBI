@@ -33,6 +33,7 @@
 		E8594C812D2467E20076EBBD /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C802D2467E20076EBBD /* ProductsViewModel.swift */; };
 		E8594C832D246EA60076EBBD /* ProductsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C822D246EA60076EBBD /* ProductsDetailViewController.swift */; };
 		E8594C852D253A160076EBBD /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C842D253A160076EBBD /* ProductStore.swift */; };
+		E8594C882D25655B0076EBBD /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8594C872D25655B0076EBBD /* Strings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		E8594C802D2467E20076EBBD /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		E8594C822D246EA60076EBBD /* ProductsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsDetailViewController.swift; sourceTree = "<group>"; };
 		E8594C842D253A160076EBBD /* ProductStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStore.swift; sourceTree = "<group>"; };
+		E8594C872D25655B0076EBBD /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		E8594C352D23F8E00076EBBD /* IBI */ = {
 			isa = PBXGroup;
 			children = (
+				E8594C862D2565440076EBBD /* Constants */,
 				E8594C7F2D2467AF0076EBBD /* ViewModels */,
 				E8594C702D2452670076EBBD /* Cells */,
 				E8594C6D2D244FBB0076EBBD /* Models */,
@@ -252,6 +255,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		E8594C862D2565440076EBBD /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				E8594C872D25655B0076EBBD /* Strings.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -335,6 +346,7 @@
 			files = (
 				E8594C5C2D24070F0076EBBD /* String+Utils.swift in Sources */,
 				E8594C6F2D244FE50076EBBD /* Prodcut.swift in Sources */,
+				E8594C882D25655B0076EBBD /* Strings.swift in Sources */,
 				E8594C572D2401220076EBBD /* LoginViewController.swift in Sources */,
 				E8594C5E2D2407460076EBBD /* UIViewController+Utils.swift in Sources */,
 				E8594C832D246EA60076EBBD /* ProductsDetailViewController.swift in Sources */,
