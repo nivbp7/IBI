@@ -12,6 +12,8 @@ final class SettingsViewController: UIViewController {
     private let segmentedControl = UISegmentedControl(items: ["English", "Hebrew"])
     private let languages = ["en", "he"]
     
+    private let logoutButton = UIButton()
+    
     // MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -39,6 +41,7 @@ final class SettingsViewController: UIViewController {
     // MARK: - View layout
     private func layout() {
         layoutSegments()
+        layoutButton()
     }
     
     private func layoutSegments() {
@@ -51,10 +54,22 @@ final class SettingsViewController: UIViewController {
         ])
     }
     
+    private func layoutButton() {
+        view.add(subviews: [logoutButton])
+        
+        NSLayoutConstraint.activate([
+            logoutButton.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
+            logoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            logoutButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
     // MARK: - Setup
     private func setup() {
         setupView()
         setupSegments()
+        setupButton()
     }
     
     private func setupView() {
@@ -71,6 +86,20 @@ final class SettingsViewController: UIViewController {
         // Configure the segmented control
         segmentedControl.selectedSegmentIndex = getCurrentLanguageIndex()
         segmentedControl.addTarget(self, action: #selector(languageChanged), for: .valueChanged)
+    }
+    
+    private func setupButton() {
+        let title = String(localized: "logout")
+        logoutButton.setTitle(title, for: .normal)
+        logoutButton.setTitleColor(.label, for: .normal)
+        logoutButton.backgroundColor = .systemRed
+        logoutButton.layer.cornerRadius = 10
+        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+    }
+    
+    // MARK: - Actions
+    @objc private func logout() {
+        UserDefaults.isLoggedIn = false
     }
     
     private func getCurrentLanguageIndex() -> Int {

@@ -121,6 +121,9 @@
         }
       }
     },
+    "logout" : {
+
+    },
     "OK" : {
       "localizations" : {
         "he" : {
