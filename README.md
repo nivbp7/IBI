@@ -1,7 +1,7 @@
 # IBI - Products Store
 Login Credentials:
-username - IBI
-password - password
+* username - IBI
+* password - password
 
 
 Login screen:
