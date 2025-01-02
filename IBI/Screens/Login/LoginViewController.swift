@@ -207,17 +207,15 @@ final class LoginViewController: UIViewController {
     
     private func authenticateUser() {
         let context = LAContext()
-        context.localizedCancelTitle = String(localized: "Cancel")
-        context.localizedFallbackTitle = String(localized: "Use Passcode")
-        
-        let reason = String(localized: "Authenticate to access your account")
         var error: NSError?
         
-        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, authenticationError in
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = String(localized: "Authenticate to access your account")
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                [weak self] success, authenticationError in
+                guard let self = self else { return }
                 DispatchQueue.main.async {
                     if success {
-                        self.dismiss(animated: true)
                         self.delegate?.loginViewControllerDidLogin(self)
                     } else {
                         let title = String(localized: "Authentication failed")
