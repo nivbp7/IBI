@@ -28,3 +28,4 @@ Known Issues:
 * Displaying images in the detail screen would be better implemented with a Collection View.
 * Pagination is working, however it would be nicer to add a loading spinner at the bottom and also during the initial load. 
 * Creating the URL should be done with `URLComponents` and not string literals.
+* The navigation title should start with `prefersLargeTitles` set to `true`. However, there was an animation bug in which the large title was still showning up on the detail screen.
