@@ -38,6 +38,7 @@ class ProductsDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupNavigationBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,6 +89,10 @@ class ProductsDetailViewController: UIViewController {
         setupButton()
         setupLabels()
         setupImages()
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func setupView() {

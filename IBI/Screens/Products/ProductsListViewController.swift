@@ -39,6 +39,7 @@ class ProductsListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupNavigationBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,7 +54,6 @@ class ProductsListViewController: UIViewController {
     // MARK: - Setup
     private func setup() {
         setupView()
-        setupNavigationBar()
     }
     
     private func setupView() {
@@ -67,9 +67,9 @@ class ProductsListViewController: UIViewController {
     }
     
     func setupNavigationBar() {
-        let reloadButton = UIBarButtonItem(title: String(localized: "Reload"), style: .done, target: self, action: #selector(didClickReload))
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.title = String(localized: "Products")
+        let reloadButton = UIBarButtonItem(title: String(localized: "Reload"), style: .done, target: self, action: #selector(didClickReload))
         navigationItem.rightBarButtonItem = reloadButton
     }
 

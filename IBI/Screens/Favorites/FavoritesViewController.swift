@@ -16,7 +16,7 @@ final class FavoritesViewController: ProductsListViewController {
     }
     
     override func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.title = String(localized: "Favorites")
     }
     
