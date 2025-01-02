@@ -1,4 +1,8 @@
 # IBI - Products Store
+Login Credentials:
+username - IBI
+password - password
+
 
 Login screen:
 * User has the option to tap the action button to log into the app using Face ID/Touch ID.
